@@ -391,6 +391,7 @@ void NetworkAccessManager::handleStarted()
     data["status"] = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
     data["statusText"] = reply->attribute(QNetworkRequest::HttpReasonPhraseAttribute);
     data["contentType"] = reply->header(QNetworkRequest::ContentTypeHeader);
+    data["body"] = reply->peek(reply->size()).toBase64().data();
     data["bodySize"] = reply->size();
     data["redirectURL"] = reply->header(QNetworkRequest::LocationHeader);
     data["headers"] = headers;
